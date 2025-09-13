@@ -8,12 +8,12 @@ RewriteEngine On
 # Hide .git
 RedirectMatch 404 /\.git
 
-# Force HTTPS
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteCond %{HTTPS} !=on
-RewriteCond %{REMOTE_ADDR} !=127.0.0.1
-RewriteCond %{HTTP_HOST} !=localhost
-RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,QSA]
+# Force HTTPS (disabled for local development)
+# RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# RewriteCond %{HTTPS} !=on
+# RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+# RewriteCond %{HTTP_HOST} !=localhost
+# RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,QSA]
 
 # Home view
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
