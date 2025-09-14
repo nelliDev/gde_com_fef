@@ -1,5 +1,7 @@
 ## Pré-Requisitos ##
 
+<!-- TESTE DO BORDDDDDD -->
+
  - Apache 2.4 ou mais novo;
    - Módulo `mod_rewrite` ativado;
    - Configuração `AllowOverride` definida como `All`;
