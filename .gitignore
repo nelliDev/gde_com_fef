@@ -1,0 +1,22 @@
+# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+.svn/
+cache/*
+!cache/.htaccess
+common/config.inc.php
+nbproject/
+api/gen/
+web/fts/*
+!web/fts/nobody*.gif
+42/
+.DS_Store
+.idea/
+*.iml
+proxies/*
+!proxies/.htaccess
+vendor/*
+!vendor/.htaccess
+composer.phar
+errors/*
