@@ -83,8 +83,6 @@ DB_USER=Web
 DB_PASSWORD=gde123
 ```
 
-**Note:** If no `.env` file exists, the scraper will use the Docker instance defaults (`gde` database, `Web` user, `gde123` password).
-
 ## Usage
 
 ### Basic Usage
