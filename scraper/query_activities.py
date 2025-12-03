@@ -15,9 +15,9 @@ load_dotenv()
 
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'localhost'),
-    'database': os.getenv('DB_NAME', 'fef_activities'),
-    'user': os.getenv('DB_USER', 'root'),
-    'password': os.getenv('DB_PASSWORD', ''),
+    'database': os.getenv('DB_NAME', 'gde'),  # Changed from 'fef_activities' to 'gde'
+    'user': os.getenv('DB_USER', 'Web'),      # Changed from 'root' to 'Web'
+    'password': os.getenv('DB_PASSWORD', 'gde123'),  # Changed from '' to 'gde123'
 }
 
 
@@ -42,7 +42,7 @@ def display_all_activities():
         cursor = connection.cursor()
         query = """
             SELECT category, class_name, schedule, cost, enrollment_deadline
-            FROM activities
+            FROM gde_activities
             ORDER BY category, class_name
         """
         cursor.execute(query)
@@ -93,7 +93,7 @@ def display_activities_by_category(category: str):
         cursor = connection.cursor()
         query = """
             SELECT class_name, schedule, cost, enrollment_deadline
-            FROM activities
+            FROM gde_activities
             WHERE category = %s
             ORDER BY class_name
         """
@@ -133,7 +133,7 @@ def get_all_categories() -> List[str]:
     
     try:
         cursor = connection.cursor()
-        query = "SELECT DISTINCT category FROM activities ORDER BY category"
+        query = "SELECT DISTINCT category FROM gde_activities ORDER BY category"
         cursor.execute(query)
         results = cursor.fetchall()
         cursor.close()
@@ -156,28 +156,28 @@ def display_statistics():
         cursor = connection.cursor()
         
         # Total activities
-        cursor.execute("SELECT COUNT(*) FROM activities")
+        cursor.execute("SELECT COUNT(*) FROM gde_activities")
         total = cursor.fetchone()[0]
         
         # Activities by category
         cursor.execute("""
             SELECT category, COUNT(*) as count
-            FROM activities
+            FROM gde_activities
             GROUP BY category
             ORDER BY count DESC
         """)
         by_category = cursor.fetchall()
         
         # Free activities
-        cursor.execute("SELECT COUNT(*) FROM activities WHERE cost = 0")
+        cursor.execute("SELECT COUNT(*) FROM gde_activities WHERE cost = 0")
         free_count = cursor.fetchone()[0]
         
         # Average cost
-        cursor.execute("SELECT AVG(cost) FROM activities WHERE cost > 0")
+        cursor.execute("SELECT AVG(cost) FROM gde_activities WHERE cost > 0")
         avg_cost = cursor.fetchone()[0]
         
         # Price range
-        cursor.execute("SELECT MIN(cost), MAX(cost) FROM activities WHERE cost > 0")
+        cursor.execute("SELECT MIN(cost), MAX(cost) FROM gde_activities WHERE cost > 0")
         min_cost, max_cost = cursor.fetchone()
         
         print("\n" + "="*80)

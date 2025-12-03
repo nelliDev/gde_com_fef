@@ -74,13 +74,13 @@ cp .env.example .env
 nano .env  # or use your preferred editor
 ```
 
-Edit the `.env` file with your MySQL configuration:
+Edit the `.env` file with your MySQL configuration (optional - defaults match Docker setup):
 
 ```ini
 DB_HOST=localhost
-DB_NAME=fef_activities
-DB_USER=root
-DB_PASSWORD=your_actual_password
+DB_NAME=gde
+DB_USER=Web
+DB_PASSWORD=gde123
 ```
 
 ## Usage
@@ -108,7 +108,7 @@ python fef_scraper.py
 ============================================================
 FEF UNICAMP Activities Scraper
 ============================================================
-✓ Successfully connected to MySQL database: fef_activities
+✓ Successfully connected to MySQL database: gde
 Fetching webpage: https://sistemas.fef.unicamp.br/extensao/registrations/showOpenRegistrations/26
 ✓ Successfully fetched webpage (Status: 200)
 
@@ -134,7 +134,7 @@ Saving to database...
 
 ## Database Schema
 
-### `activities` table
+### `gde_activities` table
 
 | Column              | Type          | Description                          |
 |---------------------|---------------|--------------------------------------|
@@ -146,7 +146,7 @@ Saving to database...
 | enrollment_deadline | VARCHAR(255)  | Enrollment deadline                  |
 | scraped_at          | TIMESTAMP     | When the data was scraped            |
 
-### `scraping_history` table
+### `gde_scraping_history` table
 
 | Column          | Type          | Description                    |
 |-----------------|---------------|--------------------------------|
@@ -161,31 +161,31 @@ Saving to database...
 ### View all activities:
 
 ```sql
-SELECT * FROM activities ORDER BY category, class_name;
+SELECT * FROM gde_activities ORDER BY category, class_name;
 ```
 
 ### Get activities by category:
 
 ```sql
-SELECT * FROM activities WHERE category = 'ATLETISMO';
+SELECT * FROM gde_activities WHERE category = 'ATLETISMO';
 ```
 
 ### Find free activities:
 
 ```sql
-SELECT * FROM activities WHERE cost = 0;
+SELECT * FROM gde_activities WHERE cost = 0;
 ```
 
 ### Get activities within a price range:
 
 ```sql
-SELECT * FROM activities WHERE cost BETWEEN 200 AND 300;
+SELECT * FROM gde_activities WHERE cost BETWEEN 200 AND 300;
 ```
 
 ### Check scraping history:
 
 ```sql
-SELECT * FROM scraping_history ORDER BY scraped_at DESC LIMIT 10;
+SELECT * FROM gde_scraping_history ORDER BY scraped_at DESC LIMIT 10;
 ```
 
 ## Customization

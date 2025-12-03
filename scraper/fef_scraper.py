@@ -23,11 +23,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Database configuration
+# Defaults match the Docker GDE application database
+# Can be overridden via .env file
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'localhost'),
-    'database': os.getenv('DB_NAME', 'fef_activities'),
-    'user': os.getenv('DB_USER', 'root'),
-    'password': os.getenv('DB_PASSWORD', ''),
+    'database': os.getenv('DB_NAME', 'gde'),  # Changed from 'fef_activities' to 'gde'
+    'user': os.getenv('DB_USER', 'Web'),      # Changed from 'root' to 'Web'
+    'password': os.getenv('DB_PASSWORD', 'gde123'),  # Changed from '' to 'gde123'
     'charset': 'utf8mb4',
     'collation': 'utf8mb4_unicode_ci'
 }
@@ -209,7 +211,7 @@ class FEFActivityScraper:
         """
         try:
             cursor = self.connection.cursor()
-            cursor.execute("DELETE FROM activities")
+            cursor.execute("DELETE FROM gde_activities")
             self.connection.commit()
             deleted_count = cursor.rowcount
             cursor.close()
@@ -237,7 +239,7 @@ class FEFActivityScraper:
             cursor = self.connection.cursor()
             
             insert_query = """
-                INSERT INTO activities 
+                INSERT INTO gde_activities 
                 (category, class_name, schedule, cost, enrollment_deadline)
                 VALUES (%s, %s, %s, %s, %s)
             """
@@ -276,7 +278,7 @@ class FEFActivityScraper:
         try:
             cursor = self.connection.cursor()
             insert_query = """
-                INSERT INTO scraping_history 
+                INSERT INTO gde_scraping_history 
                 (total_activities, status, error_message)
                 VALUES (%s, %s, %s)
             """
