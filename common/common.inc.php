@@ -231,6 +231,7 @@ $(document).ready(function(){
 							<li><a href="<?= CONFIG_URL; ?>avaliar/">Avaliar Professores</a></li>
 							<li><a href="<?= CONFIG_URL; ?>eliminador/">Eliminar Disciplinas</a></li>
 							<li><a href="<?= CONFIG_URL; ?>mapa/">Mapa do Campus</a></li>
+							<li><a href="<?= CONFIG_URL; ?>atividades-fef/">Atividades da FEF</a></li>
 							<li><a class="ui-corner-bottom" href="<?= CONFIG_URL; ?>planejador/">Planejador</a></li>
 							<!-- <li><a class="ui-corner-bottom" href="<?= CONFIG_URL; ?>rankings/">Rankings</a></li> -->
 						</ul>
