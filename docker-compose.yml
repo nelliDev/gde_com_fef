@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   web:
     build: .
@@ -32,7 +30,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password --innodb-ft-min-token-size=1
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin:latest
     environment:
       PMA_HOST: db
       PMA_USER: Web

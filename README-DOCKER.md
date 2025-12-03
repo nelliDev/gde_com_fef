@@ -12,7 +12,7 @@ Complete installation guide for running GDE using Docker.
 2. **Run setup script**:
    ```bash
    ./setup.sh
-   ```
+   
 
 3. **Install PHP dependencies**:
    ```bash
@@ -76,7 +76,7 @@ For full functionality with actual course data:
 **Stop the application**:
 ```bash
 docker-compose down
-```
+
 
 **View logs**:
 ```bash
