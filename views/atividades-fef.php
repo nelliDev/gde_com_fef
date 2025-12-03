@@ -57,16 +57,15 @@ if($_Usuario === null) {
     }
     
     .filtros-grid {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 15px;
-        align-items: center;
+        align-items: end;
     }
     
     .filtro-grupo {
         display: flex;
         flex-direction: column;
-        min-width: 150px;
     }
     
     .filtro-grupo label {
@@ -300,11 +299,8 @@ if($_Usuario === null) {
         }
         
         .filtros-grid {
-            flex-direction: column;
-        }
-        
-        .filtro-grupo {
-            min-width: 100%;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
         
         .atividades-grid {
@@ -418,6 +414,68 @@ if($_Usuario === null) {
                 <label for="filtroCategoria">Categoria:</label>
                 <select id="filtroCategoria">
                     <option value="">Todas as categorias</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="filtroDiaSemana">Dia da Semana:</label>
+                <select id="filtroDiaSemana">
+                    <option value="">Todos os dias</option>
+                    <option value="seg">Segunda-feira</option>
+                    <option value="ter">Terça-feira</option>
+                    <option value="qua">Quarta-feira</option>
+                    <option value="qui">Quinta-feira</option>
+                    <option value="sex">Sexta-feira</option>
+                    <option value="sab">Sábado</option>
+                    <option value="dom">Domingo</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="filtroHorarioInicio">Horário de Início:</label>
+                <select id="filtroHorarioInicio">
+                    <option value="">Qualquer horário</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="filtroHorarioFim">Horário de Fim:</label>
+                <select id="filtroHorarioFim">
+                    <option value="">Qualquer horário</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
                 </select>
             </div>
             

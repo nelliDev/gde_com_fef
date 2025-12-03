@@ -12,7 +12,10 @@ var atividadesFEF = {
     // Estado dos filtros
     filtros: {
         categoria: '',
-        custo: ''
+        custo: '',
+        diaSemana: '',
+        horarioInicio: '',
+        horarioFim: ''
     },
     
     // Estado da paginação
@@ -42,6 +45,21 @@ var atividadesFEF = {
         
         document.getElementById('filtroCusto').addEventListener('change', function() {
             self.filtros.custo = this.value;
+            self.aplicarFiltros();
+        });
+        
+        document.getElementById('filtroDiaSemana').addEventListener('change', function() {
+            self.filtros.diaSemana = this.value;
+            self.aplicarFiltros();
+        });
+        
+        document.getElementById('filtroHorarioInicio').addEventListener('change', function() {
+            self.filtros.horarioInicio = this.value;
+            self.aplicarFiltros();
+        });
+        
+        document.getElementById('filtroHorarioFim').addEventListener('change', function() {
+            self.filtros.horarioFim = this.value;
             self.aplicarFiltros();
         });
         
@@ -202,6 +220,29 @@ var atividadesFEF = {
             });
         }
         
+        // Filtrar por dia da semana
+        if (this.filtros.diaSemana) {
+            atividades = atividades.filter(function(atividade) {
+                var horario = atividade.horario.toLowerCase();
+                var diaProcurado = atividadesFEF.filtros.diaSemana.toLowerCase();
+                return horario.indexOf(diaProcurado) !== -1;
+            });
+        }
+        
+        // Filtrar por horário de início
+        if (this.filtros.horarioInicio) {
+            atividades = atividades.filter(function(atividade) {
+                return atividadesFEF.verificarHorario(atividade.horario, atividadesFEF.filtros.horarioInicio, 'inicio');
+            });
+        }
+        
+        // Filtrar por horário de fim
+        if (this.filtros.horarioFim) {
+            atividades = atividades.filter(function(atividade) {
+                return atividadesFEF.verificarHorario(atividade.horario, atividadesFEF.filtros.horarioFim, 'fim');
+            });
+        }
+        
         this.dados.atividadesFiltradas = atividades;
         
         // Calcular paginação
@@ -320,6 +361,44 @@ var atividadesFEF = {
     atualizarDados: function() {
         console.log('Atualizando dados...');
         this.carregarDados();
+    },
+    
+    // Verificar se o horário da atividade atende ao filtro de horário
+    verificarHorario: function(horarioAtividade, horarioFiltro, tipo) {
+        // Exemplo de horário: "Seg, Qua - 18:00 às 19:00" ou "Ter, Qui - 07:00 às 08:00"
+        try {
+            // Extrair horários do formato "XX:XX às YY:YY"
+            var regex = /(\d{2}:\d{2})\s*[àa]s?\s*(\d{2}:\d{2})/;
+            var match = horarioAtividade.match(regex);
+            
+            if (!match) return false;
+            
+            var horaInicio = match[1];
+            var horaFim = match[2];
+            
+            // Converter para números para comparação (formato HHMM)
+            function horaParaNumero(hora) {
+                var partes = hora.split(':');
+                return parseInt(partes[0]) * 100 + parseInt(partes[1]);
+            }
+            
+            var inicioNum = horaParaNumero(horaInicio);
+            var fimNum = horaParaNumero(horaFim);
+            var filtroNum = horaParaNumero(horarioFiltro);
+            
+            if (tipo === 'inicio') {
+                // Atividade deve começar no horário especificado ou depois
+                return inicioNum >= filtroNum;
+            } else if (tipo === 'fim') {
+                // Atividade deve terminar no horário especificado ou antes
+                return fimNum <= filtroNum;
+            }
+            
+            return false;
+        } catch (e) {
+            console.warn('Erro ao processar horário:', horarioAtividade, e);
+            return false;
+        }
     }
 };
 
