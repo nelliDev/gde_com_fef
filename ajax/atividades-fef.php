@@ -1,5 +1,4 @@
 <?php
-// Set NO_LOGIN_CHECK to allow access without login
 define('NO_LOGIN_CHECK', true);
 define('JSON', true);
 
@@ -73,7 +72,6 @@ function carregarAtividadesFEF() {
 
 function carregarAtividadesDatabase() {
     try {
-        // Use GDE Base class to access the entity manager
         $em = \GDE\Base::_EM()->getConnection();
         
         $query = "SELECT * FROM gde_activities ORDER BY scraped_at DESC";
@@ -83,7 +81,9 @@ function carregarAtividadesDatabase() {
         $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $atividades = [];
-        foreach ($resultados as $row) {
+        $i = 0;
+        while ($i < count($resultados)) {
+            $row = $resultados[$i];
             $atividades[] = [
                 'id' => $row['id'],
                 'categoria' => $row['category'],
@@ -93,6 +93,7 @@ function carregarAtividadesDatabase() {
                 'prazo_inscricao' => $row['enrollment_deadline'],
                 'data_scraping' => $row['scraped_at']
             ];
+            $i++;
         }
         
         return $atividades;
@@ -176,21 +177,21 @@ function processarDados($atividades, $source) {
         ];
     }
     
-    // Extrair categorias únicas
     $categorias = [];
-    foreach ($atividades as $atividade) {
-        $categoria = $atividade['categoria'];
+    $j = 0;
+    while ($j < count($atividades)) {
+        $categoria = $atividades[$j]['categoria'];
         if (!in_array($categoria, $categorias)) {
             $categorias[] = $categoria;
         }
+        $j++;
     }
     sort($categorias);
     
-    // Encontrar a última atualização
     $ultima_atualizacao = null;
-    foreach ($atividades as $atividade) {
-        if (isset($atividade['data_scraping'])) {
-            $data = strtotime($atividade['data_scraping']);
+    for ($k = 0; $k < count($atividades); $k++) {
+        if (isset($atividades[$k]['data_scraping'])) {
+            $data = strtotime($atividades[$k]['data_scraping']);
             if ($ultima_atualizacao === null || $data > $ultima_atualizacao) {
                 $ultima_atualizacao = $data;
             }
