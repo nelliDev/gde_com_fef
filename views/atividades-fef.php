@@ -27,10 +27,7 @@ if($_Usuario === null) {
 }
 ?>
 
-?>
-
 <script type="text/javascript">
-    // Define CONFIG_URL for JavaScript
     var CONFIG_URL = '<?= CONFIG_URL ?>';
 </script>
 <script type="text/javascript" src="<?= CONFIG_URL ?>web/js/gde.atividades-fef.js"></script>
@@ -80,22 +77,17 @@ if($_Usuario === null) {
         border: 1px solid #ced4da;
         border-radius: 4px;
         font-size: 14px;
+        background-color: white;
     }
     
     .btn-atualizar {
-        background: #007bff;
+        background-color: #007bff;
         color: white;
         border: none;
         padding: 10px 20px;
         border-radius: 4px;
         cursor: pointer;
         font-size: 14px;
-        align-self: flex-end;
-        height: fit-content;
-    }
-    
-    .btn-atualizar:hover {
-        background: #0056b3;
     }
     
     .atividades-grid {
@@ -106,16 +98,14 @@ if($_Usuario === null) {
     }
     
     .atividade-card {
-        background: white;
+        background-color: white;
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
     }
     
     .atividade-card:hover {
-        transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
     
@@ -297,29 +287,16 @@ if($_Usuario === null) {
         .atividades-container {
             padding: 10px;
         }
-        
         .filtros-grid {
             grid-template-columns: 1fr;
             gap: 10px;
         }
-        
         .atividades-grid {
             grid-template-columns: 1fr;
             gap: 15px;
         }
-        
         .atividade-card {
             padding: 15px;
-        }
-        
-        .paginacao-controles,
-        .paginacao-navegacao {
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .itens-por-pagina {
-            justify-content: center;
         }
     }
         border: 1px solid #dee2e6;
@@ -488,7 +465,7 @@ if($_Usuario === null) {
                 </select>
             </div>
             
-            <button class="btn-atualizar" onclick="atividadesFEF.atualizarDados()">
+            <button class="btn-atualizar" onclick="atualizarDados()">
                 🔄 Atualizar Dados
             </button>
         </div>
