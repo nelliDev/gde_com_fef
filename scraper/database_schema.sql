@@ -1,6 +1,5 @@
 -- Database schema for FEF UNICAMP activities
 -- Uses the existing 'gde' database (Docker instance)
--- If you need to create the database separately, uncomment the line below:
 -- CREATE DATABASE IF NOT EXISTS gde CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE gde;

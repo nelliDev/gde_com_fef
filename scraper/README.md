@@ -74,7 +74,7 @@ cp .env.example .env
 nano .env  # or use your preferred editor
 ```
 
-Edit the `.env` file with your MySQL configuration (optional - defaults match Docker setup):
+Edit the `.env` file with your MySQL configuration:
 
 ```ini
 DB_HOST=localhost
