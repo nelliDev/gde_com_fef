@@ -27,9 +27,9 @@ load_dotenv()
 # Can be overridden via .env file
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'localhost'),
-    'database': os.getenv('DB_NAME', 'gde'),  # Changed from 'fef_activities' to 'gde'
-    'user': os.getenv('DB_USER', 'Web'),      # Changed from 'root' to 'Web'
-    'password': os.getenv('DB_PASSWORD', 'gde123'),  # Changed from '' to 'gde123'
+    'database': os.getenv('DB_NAME', 'gde'),
+    'user': os.getenv('DB_USER', 'Web'),
+    'password': os.getenv('DB_PASSWORD', 'gde123'),
     'charset': 'utf8mb4',
     'collation': 'utf8mb4_unicode_ci'
 }
